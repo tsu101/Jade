@@ -1,5 +1,9 @@
 # ![logo](images/Designer2.png) Sample repo in GitHub
-images/Designer2.png" alt="logo" width="200">
+
+<p align="center">
+  images/Designer2.png" alt="logo" width="250">
+</p>
+
 ## GitHub Foundations: Git and GitHub
 In this course, you will learn how to use GitHub successfully
 
