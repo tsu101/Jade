@@ -1,4 +1,4 @@
-#   <img src="images/Designer2.png" alt="logo" width="auto" height="100"> Sample repo in GitHub
+#   <img src="images/Designer2.png" alt="logo" width="auto" height="150"> Sample repo in GitHub
 ## GitHub Foundations: Git and GitHub
 In this course, you will learn how to use GitHub successfully
 
