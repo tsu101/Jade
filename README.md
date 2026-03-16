@@ -1,4 +1,4 @@
-# ![Designer 20] (imgaes/Designer1.png) Sample repo in GitHub
+# ![Designer](imgaes/Designer1.png) Sample repo in GitHub
 
 ## GitHub Foundations: Git and GitHub
 In this course, you will learn how to use GitHub successfully
