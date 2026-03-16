@@ -3,3 +3,6 @@ Instructions for deploying this site
 --------------------------------------------------
 
 heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehehehehe
+
+troubleshooting
+-------------------------
