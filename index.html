@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jade | Simple Introduction</title>
+  <style>
+    :root {
+      --bg: #0f172a;          /* slate-900 */
+      --surface: #111827;     /* gray-900 */
+      --text: #e5e7eb;        /* gray-200 */
+      --muted: #94a3b8;       /* slate-400 */
+      --accent: #60a5fa;      /* blue-400 */
+      --accent-2: #f472b6;    /* pink-400 */
+      --btn: #1f2937;         /* gray-800 */
+      --btn-hover: #374151;   /* gray-700 */
+      --ring: #3b82f6;        /* blue-500 */
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: radial-gradient(1200px 800px at 10% 10%, #0b1220, var(--bg)),
+                  radial-gradient(1200px 800px at 90% 20%, #121a2a, transparent);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: #c7d2fe; /* indigo-200 */
+      border: 1px solid #3730a3; /* indigo-800 */
+      background: linear-gradient(180deg, rgba(55,48,163,.25), rgba(30,27,75,.25));
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 14px 0 10px;
+      letter-spacing: .02em;
+      background: linear-gradient(90deg, #93c5fd, #f9a8d4 60%, #f8fafc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto 22px;
+      font-size: clamp(14px, 2.5vw, 18px);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(148,163,184,0.18);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 10px 30px rgba(2,6,23,0.45);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 840px) {
+      .grid {
+        grid-template-columns: 1.15fr .85fr;
+        align-items: center;
+      }
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .photos figure {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.2);
+      background: var(--surface);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photos img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02);
+      transition: transform .35s ease;
+    }
+
+    .photos figure:hover img {
+      transform: scale(1.03);
+    }
+
+    .content p {
+      margin: 0 0 12px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: linear-gradient(180deg, rgba(99,102,241,0.15), rgba(2,6,23,0.35));
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: .02em;
+      transition: background .2s ease, transform .02s ease, border-color .2s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(180deg, rgba(99,102,241,0.22), rgba(2,6,23,0.4));
+      border-color: rgba(148,163,184,0.55);
+    }
+
+    button:active { transform: translateY(1px); }
+
+    .btn-secondary {
+      background: linear-gradient(180deg, rgba(244,114,182,0.22), rgba(2,6,23,0.4));
+      border-color: rgba(244,114,182,0.45);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Confetti canvas overlay */
+    #confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <div class="container">
+    <header>
+      <span class="tag" aria-label="Intro tag">INTRODUCTION</span>
+      <h1>Hello, I’m <strong>Jade</strong> 👋</h1>
+      <p class="subtitle">
+        Welcome to my simple introduction page. Thanks for stopping by—feel free to click the buttons below!
+      </p>
+    </header>
+
+    <main class="card">
+      <div class="grid">
+        <!-- Left: Images -->
+        <section aria-label="Gallery" class="photos">
+          <!-- Replace the src values with your own images or URLs -->
+          <figure>
+            <img src="images/Designer (21).png" alt="Photo of Jade - image 1 placeholder" />
+          </figure>
+          <figure>
+            <img src="images/Designer (20).png" alt="Photo of Jade - image 2 placeholder" />
+          </figure>
+        </section>
+
+        <!-- Right: Text + Buttons -->
+        <section class="content" aria-label="About Jade">
+          <p>
+            I’m Jade. This page is a quick intro with a couple of photos and two interactive buttons:
+            a warm <em>Welcome</em> and a joyful <em>Happy Birthday</em> surprise. 🎂
+          </p>
+          <p>
+            Feel free to customize the text, colors, and pictures to match your style.
+          </p>
+
+          <div class="buttons" role="group" aria-label="Action buttons">
+            <button id="btnWelcome" aria-label="Show welcome message">👋 Welcome</button>
+            <button id="btnBirthday" class="btn-secondary" aria-label="Show birthday message with confetti">
+              🎉 Happy Birthday
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Jade. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Basic interactions
+    const btnWelcome = document.getElementById('btnWelcome');
+    const btnBirthday = document.getElementById('btnBirthday');
+
+    btnWelcome.addEventListener('click', () => {
+      alert('Welcome! Thanks for visiting, and have a great day! 😊');
+    });
+
+    btnBirthday.addEventListener('click', () => {
+      alert('Happy Birthday! Wishing you joy, health, and lots of cake! 🎂🎈');
+      launchConfetti();
+    });
+
+    // Lightweight confetti animation (no libraries)
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+
+      const colors = ['#60a5fa', '#f472b6', '#facc15', '#34d399', '#a78bfa'];
+      const particles = [];
+      const MAX = Math.min(180, Math.floor((W * H) / 12000)); // adaptive count
+      const gravity = 0.12;
+      const drag = 0.985;
+
+      for (let i = 0; i < MAX; i++) {
+        particles.push({
+          x: Math.random() * W,
+          y: -20 - Math.random() * H * 0.5,
+          r: 4 + Math.random() * 4,
+          color: colors[(Math.random() * colors.length) | 0],
+          tilt: Math.random() * 10 - 5,
+          tiltAngle: Math.random() * Math.PI,
+          vx: -2 + Math.random() * 4,
+          vy: 2 + Math.random() * 2
+        });
+      }
+
+      let running = true;
+      let frame = 0;
+
+      function draw() {
+        if (!running) return;
+        ctx.clearRect(0, 0, W, H);
+
+        for (let p of particles) {
+          ctx.beginPath();
+          ctx.fillStyle = p.color;
+          ctx.ellipse(
+            p.x, p.y,
+            p.r, p.r * 0.6,
+            p.tiltAngle, 0, Math.PI * 2
+          );
+          ctx.fill();
+
+          // Physics
+          p.tiltAngle += 0.1;
+          p.vy += gravity;
+          p.vx *= drag;
+          p.vy *= drag;
+
+          p.x += p.vx + Math.sin(frame / 20) * 0.3;
+          p.y += p.vy + Math.cos(frame / 25) * 0.3;
+
+          // Recycle off-screen particles
+          if (p.y > H + 20) {
+            p.y = -20;
+            p.x = Math.random() * W;
+            p.vy = 2 + Math.random() * 2;
+            p.vx = -2 + Math.random() * 4;
+          }
+        }
+
+        frame++;
+        if (frame < 900) requestAnimationFrame(draw); // ~15s
+        else running = false;
+      }
+
+      // Resize handling
+      const onResize = () => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      };
+      window.addEventListener('resize', onResize, { passive: true });
+
+      draw();
+
+      // Stop gracefully after a while and cleanup listener
+      setTimeout(() => {
+        running = false;
+        window.removeEventListener('resize', onResize);
+        // Fade out canvas
+        const fade = canvas.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, fill: 'forwards' });
+        fade.onfinish = () => { canvas.style.opacity = 1; ctx.clearRect(0,0,W,H); };
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
