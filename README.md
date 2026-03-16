@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/Designer2.png" alt="logo" width="280">
+  <img src="images/Designer2.png" alt="logo" width="250" height="250">
 </p>
 
 # Sample repo in GitHub
