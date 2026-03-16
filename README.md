@@ -1,7 +1,11 @@
-# Welcome To My Page
+# Sample repo in GitHub
 
-## Jade
+## GitHub Foundations: Git and GitHub
+In this course, you will learn how to use GitHub successfully
 
-* red
-* green
-* blue
+### The Basics
+
+- Understand the use of GitHub
+- Create repositories
+- Work with Git and GitHub locally
+- 
